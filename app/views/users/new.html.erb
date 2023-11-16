@@ -1,0 +1,44 @@
+<%# <form accept-charset="UTF-8" action="/users" method="post">
+  <label for="username">Username:</label>
+  <input type="text" name="user[username]"><br><br>
+  <label for="email">Email:</label>
+  <input type="text" name="user[email]"><br><br>
+  <label for="password">Password:</label>
+  <input type="password" name="user[password]"><br><br>
+  <input type="submit" value="Submit">
+</form> %>
+
+
+<%# <%= form_tag("/users", method: "post") do  %>
+  <%# <%= label_tag(:user, 'Username:') %> 
+  <%# <%= text_field(:user, :username) %>
+  <%# <%= label_tag(:email, "Email:") %> 
+  <%# <%= email_field(:user, :email) %> 
+  <%# <%= label_tag(:password, "Password:") %> 
+  <%# <%= password_field_tag(:user) %> 
+  <%# <%= submit_tag("Submit") %>
+<%# <% end %>
+
+
+<%= form_with model: User.new do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li style="color: red"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.label 'Username:' %>
+  <%= form.text_field :username, value: 'Seka' %>
+  <%= form.label 'Email:' %>
+  <%= form.text_field :email, value: 'Seka@seka.seka' %>
+  <%= form.label 'Password:'%>
+  <%= form.password_field :password, value: '1234' %>
+  <%= form.submit %>
+<% end %>
+
+
